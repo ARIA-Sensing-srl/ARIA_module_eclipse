@@ -12,7 +12,7 @@
 #include "models.h"
 
 
-#define CUSTOMER_CODE 	0x0000		//Aria Sensing
+#define CUSTOMER_CODE 	0x0000
 #if DEF_BOARD_MODEL == AHM2D
 #define HW_CODE			0xA2D0
 #elif DEF_BOARD_MODEL == AHM3D

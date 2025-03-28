@@ -25,3 +25,4 @@ HWREV=0x00010001
 
 CORE_CV
 
+Doxygen documentation source file is available inside doxygen folder
