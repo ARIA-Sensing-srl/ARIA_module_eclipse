@@ -1,0 +1,9 @@
+*.d
+*.o
+*.elf
+*.hex
+*.map
+/doxygen/
+/Debug/
+/.cproject
+/.project
