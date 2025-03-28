@@ -1,0 +1,83 @@
+/*
+ * Interrupts.h
+*
+ *  Created on: Oct 10, 2023
+ *      Author: ARIA Sensing
+ *      Copyright: ARIA Sensing, 2023 - 
+ */
+
+#ifndef INTERRUPTS_H
+#define INTERRUPTS_H
+#include "soc_reg.h"
+#include "stdint.h"
+
+	#define ITC_OFFSET 	0x00000000
+	#define ITC_FIFO_OFFSET 0x00000024
+
+	typedef struct _itc_t{
+		uint32_t IER;
+		uint32_t IERSET;
+		uint32_t IERCLR;
+		uint32_t ISR;
+		uint32_t ISRSET;
+		uint32_t ISRCLR;
+		uint32_t IAR;
+		uint32_t IARSET;
+		uint32_t IARCLR;
+	}itc_t;
+
+	#define ITC ((volatile itc_t *)(ITC_BASE+ITC_OFFSET))
+	#define ITC_FIFO (*(volatile uint32_t *)(ITC_BASE+ITC_FIFO_OFFSET))
+
+
+	#define ITC_TIMER_LO_ID				10
+	#define ITC_TIMER_HI_ID				11
+	#define ITC_PF_EVT_ID				12
+	#define ITC_REF_RISE_FALL_ID		14
+	#define ITC_GPIO_EVT_ID				15
+	#define ITC_ADV_TMR0_ID				17
+	#define ITC_ADV_TMR1_ID				18
+	#define ITC_ADV_TMR2_ID				19
+	#define ITC_ADV_TMR3_ID				20
+	#define ITC_RCC_IRQ_ID				21
+	#define ITC_EVT_FIFO_VALID_ID		26
+	#define ITC_FC_ERR_ID				29
+	#define ITC_HP_EVT0_ID				30
+	#define ITC_HP_EVT1_ID				31
+
+
+
+
+	#define ITC_IER_TIMER_LO_BIT		ITC_TIMER_LO_ID
+	#define ITC_IER_TIMER_HI_BIT		ITC_TIMER_HI_ID
+	#define ITC_IER_PF_EVT_BIT			ITC_PF_EVT_ID
+	#define ITC_IER_REF_RISE_FALL_BIT	ITC_REF_RISE_FALL_ID
+	#define ITC_IER_GPIO_EVT_BIT		ITC_GPIO_EVT_ID
+	#define ITC_IER_ADV_TMR0_EVT_BIT	ITC_ADV_TMR0_ID
+	#define ITC_IER_ADV_TMR1_EVT_BIT	ITC_ADV_TMR1_ID
+	#define ITC_IER_ADV_TMR2_EVT_BIT	ITC_ADV_TMR2_ID
+	#define ITC_IER_ADV_TMR3_EVT_BIT	ITC_ADV_TMR3_ID
+	#define ITC_IER_RCC_IRQ				ITC_RCC_IRQ_ID
+	#define ITC_IER_EVT_FIFO_VALID_BIT	ITC_EVT_FIFO_VALID_ID
+	#define ITC_IER_FC_ERR_BIT			ITC_FC_ERR_ID
+	#define ITC_IER_HP_EVT0_BIT			ITC_HP_EVT0_ID
+	#define ITC_IER_HP_EVT1_BIT			ITC_HP_EVT1_ID
+
+	#define ITC_ISR_TIMER_LO_BIT		ITC_IER_TIMER_LO_BIT
+	#define ITC_ISR_TIMER_HI_BIT		ITC_IER_TIMER_HI_BIT
+	#define ITC_ISR_PF_EVT_BIT			ITC_IER_PF_EVT_BIT
+	#define ITC_ISR_REF_RISE_FALL_BIT	ITC_IER_REF_RISE_FALL_BIT
+	#define ITC_ISR_GPIO_EVT_BIT		ITC_IER_GPIO_EVT_BIT
+	#define ITC_ISR_ADV_TMR0_EVT_BIT	ITC_IER_ADV_TMR0_EVT_BIT
+	#define ITC_ISR_ADV_TMR1_EVT_BIT	ITC_IER_ADV_TMR1_EVT_BIT
+	#define ITC_ISR_ADV_TMR2_EVT_BIT	ITC_IER_ADV_TMR2_EVT_BIT
+	#define ITC_ISR_ADV_TMR3_EVT_BIT	ITC_IER_ADV_TMR3_EVT_BIT
+	#define ITC_ISR_RCC_IRQ				ITC_IER_RCC_IRQ
+	#define ITC_ISR_EVT_FIFO_VALID_BIT	ITC_IER_EVT_FIFO_VALID_BIT
+	#define ITC_ISR_FC_ERR_BIT			ITC_IER_FC_ERR_BIT
+	#define ITC_ISR_HP_EVT0_BIT			ITC_IER_HP_EVT0_BIT
+	#define ITC_ISR_HP_EVT1_BIT			ITC_IER_HP_EVT1_BIT
+
+
+
+#endif
