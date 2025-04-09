@@ -49,7 +49,16 @@ C preprocessor<br>
 
 
 <h2>Debug</h2>
-Openocd script provided into "openocd" folder
+
+Openocd script provided into "openocd" folder<br>
+The script is for FTDI cable as USB-JTAG converter (tested with C232HM-DDHSL-0 cable, see cable's datasheet for JTAG pin wiring)<br><br>
+&nbsp;&nbsp;<b>TRST and RST pins (custom mapping)</b><br>
+&nbsp;&nbsp;TRST (jtag reset): GPIOL3<br>
+&nbsp;&nbsp;RST (master reset): GPIOL0<br>
+
+
+<h4>Debug AHM-DK</h4>
+See devkit user manual for device setup and connection
 
 <h2>Documentation</h2>
 
