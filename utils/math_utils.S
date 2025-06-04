@@ -13,6 +13,8 @@
 .global utils_conv_half2float
 .global utils_conv_float2int
 .global utils_conv_int2float
+.global utils_cnt_ones
+.global utils_findfirst_one
 
 .align 4
 .option norvc;
@@ -74,3 +76,15 @@ i2f_s:
 i2f_e:fsw ft1, -4(a1)
 	nop
 	jr ra
+
+
+//uint32_t utils_cnt_ones(uint32_t mask)
+utils_cnt_ones:
+	p.cnt a0, a0
+	jr ra
+
+//uint32_t utils_findfirst_one(uint32_t mask);
+utils_findfirst_one:
+	p.ff1 a0,a0
+	jr ra
+

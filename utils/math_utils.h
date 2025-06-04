@@ -20,6 +20,8 @@ void utils_conv_float2half(float *, float16_t * , int);
 void utils_conv_half2float(float16_t * ,float *,  int);
 void utils_conv_float2int(float *, int32_t * , int);
 void utils_conv_int2float(int32_t * , float *, int);
+uint32_t utils_cnt_ones(uint32_t mask);
+uint32_t utils_findfirst_one(uint32_t mask);
 
 
 #endif /* MATH_UTILS_H_ */

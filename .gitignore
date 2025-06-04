@@ -7,3 +7,10 @@
 /Debug/
 /.cproject
 /.project
+/Debug_tc/
+/Release_libs_SPI/
+/Release/
+/Release_libs_reconstruction/
+/Release_libs_utils/
+/Release_lib_processing/
+/Debug_wlib/

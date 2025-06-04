@@ -23,12 +23,18 @@
 #define AHM3DSC_RC2	4
 #define AHM2DL		5
 
-
+#ifndef PLATIO
 #ifdef DEF_BOARD_MODEL
 #error "DEF_BOARD_MODEL already defined"
 #endif
 /** @brief Board model selection */
 #define DEF_BOARD_MODEL				AHM2DL
+#else
+#ifndef DEF_BOARD_MODEL
+#error "Undefined board model"
+#endif
+
+#endif
 
 #endif /* INC_MODELS_H_ */
 

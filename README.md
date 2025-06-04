@@ -12,6 +12,25 @@ Toolchain:<a href="https://github.com/pulp-platform/pulp-riscv-gnu-toolchain.git
 Minimal build requirement is:<br>
 configure --with-arch=rv32imfcxpulpv3 --with-abi=ilp32 --enable-multilib
 
+Precompiled toolchain: <a href="https://drive.google.com/drive/folders/14DKVhOZQEVnwNfB2EFMPyWA22nspnS2o?usp=drive_link">precompiled toolchain</a><br>
+The toolchain is compiled under linux and includes scripts to build under Windows by exploiting WSL. Tested with Ubuntu WSL<br>
+The scripts convert the compiler call to a wsl call to Linux compiled toolchain 
+<h4>Windows/WSL compile</h4>
+Install a WSL (Ubuntu tested)<br>
+Into project's toolchain option, set<br> 
+&nbsp;&nbsp;"suffix" .bat<br>
+&nbsp;&nbsp;"prefix" riscv32-unknown-elf-<br>
+&nbsp;&nbsp;"Toolchain path" path-to-toolchain-bin-folder<br>
+
+
+<h4>Windows OpenOCD debug</h4>
+GDB program: "win_bin/riscv32-unknown-elf-gdb.exe"<br>
+Into the Debugger > Commands, add "set substitute-path /mnt/c/ C:\"<br>
+<br><br>
+
+
+
+
 <b>Processor configuration ISA options:</b> rv32imfc_xcorev_xfhalf
 
 <h3>Global preprocessor defines</h3>
@@ -33,7 +52,7 @@ C preprocessor<br>
 &nbsp;&nbsp;"hw"<br>
 &nbsp;&nbsp;"processing"<br>
 &nbsp;&nbsp;"reconstruction"<br>
-&nbsp;&nbsp;"src"<br>
+&nbsp;&nbsp;"application"<br>
 &nbsp;&nbsp;"startup"<br>
 &nbsp;&nbsp;"utils"<br>
 <br>

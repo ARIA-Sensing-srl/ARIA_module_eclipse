@@ -748,10 +748,11 @@ int app_entry(HydrUDriver_t* pdrv){
 
 				priv_elaborate_data(pdrv, pacqHandler);
 /** [usercode] */
+				priv_handle_datarequests(); //to get data at the same pace of FPS, user could send a request and acquire data with correct pace
 			}
 
 			//data processing and image reconstruction complete, check if data request must be performed
-			priv_handle_datarequests();
+			//priv_handle_datarequests();
 		}else{
 			//if not running verify if something occur and correct incorrect states
 			stop_req = 0;

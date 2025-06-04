@@ -20,7 +20,6 @@
 #include "hal_intc.h"
 #include "hydrogen_UD_v1.h"
 #include "main.h"
-#include "app.h"
 #include "hal_clkmgr.h"
 #include "hal_system.h"
 #include "models.h"
@@ -69,6 +68,7 @@ volatile uint32_t HAL_getSysTick();
 uint32_t HAL_getElapsed(uint32_t start);
 //** PUBLIC FUNCTIONS END **//
 
+extern int app_entry(HydrUDriver_t*);
 
 __attribute__((noreturn))
 static void priv_error_state(){
@@ -178,9 +178,10 @@ uint32_t HAL_getElapsed(uint32_t start){
 }
 
 
-__attribute__((interrupt ("machine")))
+__attribute__((interrupt("machine")))
 void isr_timer_hi(){
-	hal_apbtmr_int_pending_clear(APB_TMR, HAL_APBTMR_TMR_HI);
+	//hal_apbtmr_int_pending_clear(APB_TMR, HAL_APBTMR_TMR_HI);
+	APB_TMR->IRQRST_HI = (1 << APB_TMR_IRQRST_BIT);
 	glb_sysTick++;
 };
 
