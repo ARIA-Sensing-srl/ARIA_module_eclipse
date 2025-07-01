@@ -64,6 +64,7 @@
 #define IPC_CMD_SET_XTCLK		2		//ARG:u32 freq Hz,	RESP:Y, return success or failure
 #define IPC_CMD_DATA_MOVER		3		//arg:ipc_cmd_datamover_t*, RESP: NO, helper command to aid processor for transfer data
 #define IPC_CMD_SET_FBLINES		4		//ARG:u32 encoded 0-8 txFb, 8-16 rxFb, response yes
+#define IPC_CMD_PLL_UPDATE		5		//no arg
 
 //from 256 the command for radar configuration (even code for set ops, odd code for get ops)
 #define IPC_CMD_SET_TXPLL_FREQ			256		//ARG:u32, freqMHz, RESP:Y, return u32 actualfreq in MHz

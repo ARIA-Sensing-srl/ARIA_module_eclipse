@@ -52,7 +52,6 @@ int uart_init(uint32_t buadrate){
 	hal_udma_peripheral_reset(UDMA_UART0_PERID);
 	hal_udma_peripheral_ck_enable(UDMA_UART0_PERID);
 
-
 	//setup UART
 	uart_init_t config;
 	config.baudrate = buadrate;
@@ -69,6 +68,10 @@ int uart_init(uint32_t buadrate){
 	hal_uart_errint(UART_CHANNEL, true);
 	return UART_SUCCESS;
 
+}
+
+int uart_deinit(){
+	return hal_uart_deinit(UART_CHANNEL);
 }
 int uart_send(uint8_t* buffer, size_t size){
 	if (uart_isbusy()){

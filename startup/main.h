@@ -15,6 +15,8 @@
 #define SYSTEN_TICK_FREQ_HZ 		1000
 #define SYSTEM_XTAL_CLOCK_FREQ_HZ 	32000000UL
 #define SYSTEM_PLL_FREQ_MHZ 		1792UL
+#define SYSTEM_PLL_FREQ_ALT_MHZ		2368UL //high rate mode, BW up to 1.8 GHz
+#define SYSTEM_MAXBW_DEF_PLL_MHz	1300UL
 
 
 extern volatile uint32_t glb_sysTick; /**< System timer global variable */
@@ -37,5 +39,12 @@ extern volatile uint32_t HAL_getSysTick();
  */
 extern uint32_t HAL_getElapsed(uint32_t start);
 
+/**
+ * Update PLL frequency update and change peripheral configuration accordingly
+ * @param handler
+ * @param frequency
+ * @return
+ */
+int HAL_update_pll_frequency(HydrUDriver_t*, uint32_t frequency);
 
 #endif /* MAIN_H_ */

@@ -76,6 +76,9 @@ typedef enum {
 			RADARCOMM_GET_SAMPLING_RATE_MHZ,
 			RADARCOMM_SET_CANVAS,						//code:m set/get canvas u8 algo (all are f32) rhoMin, rhostep, rhoMax, phiMin(deg) ,phistep, phiMax(deg): get 0xFFFFFFFF
 														//in 3D mode: rhoMin, rhostep, rhoMax, elMin(deg) ,elstep, elMax(deg), thetaMin(deg) ,thetastep, thetaMax(deg)
+			RADARCOMM_SG_BW_MODE,					//arg u8: 0: default mode PLL at 1792 (max BW 1.3GHz), 1: high bw mode, pll a 2.4GHz
+			RADARCOMM_SG_BAUDRATE,					//arg u32
+			RADARCOMM_SG_PWRMODE,
 }radar_command;
 
 

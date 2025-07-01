@@ -44,6 +44,11 @@ int uart_rx_enable(uint8_t enable);
  * @return true if transmission is ongoing, false otherwise
  */
 bool uart_isbusy();
+/**
+ * De-initialize UART interface, necessary for change baudrate
+ * @return true if transmission is ongoing, false otherwise
+ */
+int uart_deinit();
 
 #define UART_SUCCESS 0
 #define UART_FAIL -1

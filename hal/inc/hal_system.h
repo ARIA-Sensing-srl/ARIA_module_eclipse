@@ -19,5 +19,11 @@
  * @return SUCCESS/FAIL
  */
 uint32_t hal_system_init(uint32_t xtalfreq_Hz, uint32_t refreq_Mhz);
+/**
+ * System clock update
+ * @param refreq_Mhz
+ * @return SUCCESS/FAIL
+ */
+uint32_t hal_system_updatepll(uint32_t refreq_Mhz);
 
 #endif /* HAL_APP_LIBONLY_INC_HAL_SYSTEM_H_ */

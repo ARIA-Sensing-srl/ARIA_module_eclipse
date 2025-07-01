@@ -57,6 +57,7 @@ static int priv_update_framebins(HydrUDriver_t *);
 int HydrUDrv_init(HydrUDriver_t * pdrv){
 	memset((void*)pdrv,0,sizeof(HydrUDriver_t));
 	pdrv->ID = 0; //for now it's only a placeholder
+	pdrv->pwrSaveMode = HUPWR_OFF;
 	//range and bins updated on configure;
 	return HYDRUDRV_SUCCESS;
 }
@@ -230,7 +231,10 @@ int HydrUDrv_set_integrations(HydrUDriver_t * pdrv, uint16_t val){
 }
 
 int HydrUDrv_set_pwrSave(HydrUDriver_t * pdrv, HydrUDrv_pwrsave_t mode){
-
+	if (mode > HUPWR_2){
+		return HYDRUDRV_INVALID_PARAMS;
+	}
+	pdrv->pwrSaveMode = mode;
 	ipc_messagedata_t msg;
 	msg.u32 = (uint32_t)mode;
 	int ret = priv_ipcio_blocking(pdrv, &msg, IPC_CMD_SET_PD, DEF_IPCIO_TIMEOUT_ms);
@@ -349,6 +353,14 @@ int HydrUDrv_start_cont(HydrUDriver_t * pdrv, HydrUDrv_acqHandler_t* pbuf0, Hydr
 int HydrUDrv_stop_cont(HydrUDriver_t * pdrv){
 	ipc_messagedata_t msg;
 	int ret = priv_ipcio_blocking(pdrv, &msg, IPC_CMD_STOP_CONT, DEF_IPCIO_TIMEOUT_ms);
+	if (ret)
+		return HYDRUDRV_FAIL;
+	return HYDRUDRV_SUCCESS;
+}
+
+int HydrUDrv_pll_update(HydrUDriver_t *h){
+	ipc_messagedata_t msg;
+	int ret = priv_ipcio_blocking(h, &msg, IPC_CMD_PLL_UPDATE, DEF_IPCIO_TIMEOUT_ms);
 	if (ret)
 		return HYDRUDRV_FAIL;
 	return HYDRUDRV_SUCCESS;

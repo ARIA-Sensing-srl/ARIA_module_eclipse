@@ -46,12 +46,11 @@ extern int comm_cb_antarray(radar_command , radar_command_payload*, void *);
 extern int comm_cb_canvas(radar_command , radar_command_payload*, void *);
 extern int comm_cb_optproc(radar_command , radar_command_payload*, void *);
 extern int comm_cb_samprate(radar_command , radar_command_payload*, void *);
+extern int comm_cb_bwmode(radar_command , radar_command_payload*, void *);
+extern int comm_cb_baudrate(radar_command , radar_command_payload*, void *);
+extern int comm_cb_pwrmode(radar_command , radar_command_payload*, void *);
 
 
-
-#ifdef ENABLE_LL_CTRL
-extern int comm_cb_ll_ctrl(radar_command , radar_command_payload*, void *);
-#endif
 
 
 static const struct _RadarCommandItem RadarCommandItem[]={
@@ -83,6 +82,9 @@ static const struct _RadarCommandItem RadarCommandItem[]={
 		{0x05,RADARCOMM_GET_SAMPLING_RATE_MHZ		,PT_U16		,comm_cb_samprate				},
 		{'v',RADARCOMM_SET_ANT_ARRAY				,PT_STRUCT	,comm_cb_antarray				},
 		{'m',RADARCOMM_SET_CANVAS					,PT_STRUCT	,comm_cb_canvas					},
+		{0x03,RADARCOMM_SG_BW_MODE					,PT_U8		,comm_cb_bwmode					},
+		{0x04,RADARCOMM_SG_BAUDRATE					,PT_U32		,comm_cb_baudrate				},
+		{0x06,RADARCOMM_SG_PWRMODE					,PT_U8		,comm_cb_pwrmode				},
 };
 
 #define RDR_CMD_LIST_SIZE (sizeof(RadarCommandItem)/(sizeof(RadarCommandItem[0])))

@@ -112,6 +112,29 @@ static int priv_setup_clock(){
 	return 0;
 }
 
+int HAL_update_pll_frequency(HydrUDriver_t* p,  uint32_t frequency){
+	uint32_t tmpFreq, tmpBW;
+	float xmin,xmax;
+
+	HydrUDrv_get_bandwidth(p, &tmpBW);
+	HydrUDrv_get_carrier(p, &tmpFreq);
+	HydrUDrv_get_range(p, &xmin, &xmax);
+
+	hal_apbtmr_stop(APB_TMR, HAL_APBTMR_TMR_HI); //stop timer
+	if (hal_system_updatepll(frequency))
+		return -1;
+	if (priv_setup_peripherals())
+		return -1;
+	if (HydrUDrv_pll_update(p))
+		return -1;
+	//restore
+	int ret = HydrUDrv_set_bandwidth(p, tmpBW);
+	ret |= HydrUDrv_set_carrier(p, tmpFreq);
+	ret |= HydrUDrv_set_range(p, xmin,xmax);
+	if (ret)
+		return -1;
+	return 0;
+}
 
 //X Hydrogen driver, call HydrUDrv_init, set Callbacks pDelay and pgetSystick, HydrUDrv_configure
 int

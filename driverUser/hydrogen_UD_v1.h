@@ -4,6 +4,7 @@
  *
  *  Created on: Jan 25, 2024\n
  *  Author: ARIA Sensing\n
+
  */
 
 
@@ -74,6 +75,7 @@ typedef struct _HydrUDriver_t{
 	uint16_t frame_bins;				//number of bins
 	HydrUDrv_pwrlvl_t txpwr;			//pwrlvl
 	HydrUDrv_acqMode_t acqMode;
+	HydrUDrv_pwrsave_t pwrSaveMode;
 	int8_t code[HYDRUD_CODE_LGTH_MAX];	//code
 	uint8_t codeSize;
 	void (*pDelay)(uint32_t);			//pointer to SW delay function
@@ -283,6 +285,13 @@ int HydrUDrv_start_cont(HydrUDriver_t * h, HydrUDrv_acqHandler_t* pbuf0, HydrUDr
  * @return SUCCESS/FAIL
  */
 int HydrUDrv_stop_cont(HydrUDriver_t *h);
+
+/**
+ * Inform the subsystem that a PLL update occurred
+ * @param h
+ * @return SUCCESS/FAIL
+ */
+int HydrUDrv_pll_update(HydrUDriver_t *h);
 
 #define HYDRUDRV_SUCCESS 0
 #define HYDRUDRV_FAIL -1

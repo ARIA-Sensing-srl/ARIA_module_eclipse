@@ -31,7 +31,7 @@
 
 #define FeatureID		0x0
 #define FWIDVer			0x0
-#define FWSubVer		0x1
+#define FWSubVer		0x3
 
 #define VERSION_BYTE_STREAM {	\
 	(CUSTOMER_CODE) & 0xFF,		\
