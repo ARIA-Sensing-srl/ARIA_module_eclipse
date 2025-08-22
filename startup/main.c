@@ -163,6 +163,7 @@ main(void)
 	ipc_init();
 
 	//start co-processor startup
+	hal_copctl_rst_assert();
 	hal_copctl_set_bootaddress((uint32_t)&__copr_start);
 	hal_copctl_rst_deassert();
 

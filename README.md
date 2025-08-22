@@ -8,7 +8,7 @@ Boards supported:<br>
 &nbsp;&nbsp;AHM3DSC<br>
 &nbsp;&nbsp;AHM2DL<br>
 
-Toolchain:<a href="https://github.com/pulp-platform/pulp-riscv-gnu-toolchain.git">pulp-riscv-gnu-toolchain</a><br>
+Toolchain:<a href="https://github.com/pulp-platform/riscv-gnu-toolchain">pulp-riscv-gnu-toolchain</a><br>
 Minimal build requirement is:<br>
 configure --with-arch=rv32imfcxpulpv3 --with-abi=ilp32 --enable-multilib
 
