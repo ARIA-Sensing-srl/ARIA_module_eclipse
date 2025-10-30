@@ -61,13 +61,22 @@ rec_partCFcompute_asm:
 	fcvt.s.h ft2, ft2
 	fmv.h.x ft3, t3 //im(b)
 	fcvt.s.h ft3, ft3
-	//
+	/*//cplx mult a*b
 	fmul.s ft4, ft0, ft2
 	fmsub.s ft4, ft1, ft3, ft4
 	fmul.s ft5, ft0, ft3
 	fmadd.s ft5, ft1, ft2, ft5
 	fadd.s fa0, fa0, ft4
+3:	fadd.s fa1, fa1, ft5*/
+	//cplxmult a* conj(b)
+	fmul.s ft4, ft0, ft2
+	fmadd.s ft4, ft1, ft3, ft4
+	fmul.s ft5, ft1, ft2
+	fmsub.s ft5, ft0, ft3, ft5
+	fadd.s fa0, fa0, ft4
 3:	fadd.s fa1, fa1, ft5
+
+
 	/*lw t2, 0(a0)
 	add a0, a0, a1
 	addi a2, a2, -1 //decrement numStream (count number of iterations of inner loop

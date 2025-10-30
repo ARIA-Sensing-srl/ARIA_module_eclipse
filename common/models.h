@@ -28,7 +28,7 @@
 #error "DEF_BOARD_MODEL already defined"
 #endif
 /** @brief Board model selection */
-#define DEF_BOARD_MODEL				AHM2DL
+#define DEF_BOARD_MODEL				AHM2D
 #else
 #ifndef DEF_BOARD_MODEL
 #error "Undefined board model"

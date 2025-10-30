@@ -3,6 +3,7 @@
  *
  *  Created on: Jan 16, 2024
  *      Author: ARIA Sensing
+ *      License: ARIA Sensing - Confidential. Not for Public Release
  */
 #include "reconstruction_2d.h"
 #include "reconstruction_types.h"
@@ -250,6 +251,13 @@ static inline complex_float priv_mult_cplx(complex_float a, complex_float b){
 	return ret;
 }
 
+static inline complex_float priv_mult_cplx_conj(complex_float a, complex_float bconj){
+	complex_float ret;
+	ret.real = a.real*bconj.real + a.imag*bconj.imag;
+	ret.imag = -a.real*bconj.imag + a.imag*bconj.real;
+	return ret;
+}
+
 
 static inline complex_float priv_tbl_exp(float norm_phase){
 	uint32_t index = (uint32_t)(norm_phase * TABLE_SIZE) & TABLE_MASK;
@@ -493,7 +501,8 @@ static int priv_DMAS(recon_handler_t*ph ,  canvas_t* pcanvas, recon_stream_t * p
 		for(int s = 0; s < numStreams-1; s++){
 			for(int t = (s+1) ; t < numStreams; t++){
 				complex_float b = load_cplxf16tocplx32((float16_t*) &pPartial[i+(t-1)*canvasPoints]);
-				b = priv_mult_cplx(b,a);
+//				b = priv_mult_cplx(b,a);
+				b = priv_mult_cplx_conj(a, b);
 				pixelc.real += b.real;
 				pixelc.imag += b.imag;
 			}
@@ -510,7 +519,8 @@ static int priv_DMAS(recon_handler_t*ph ,  canvas_t* pcanvas, recon_stream_t * p
 #endif
 		if (!ph ->outputcplx){
 			//store normalized value for the output image
-			float pixelAmpl = builtin_sqrt((pixelc.real*pixelc.real + pixelc.imag*pixelc.imag)*normFactor);
+//			float pixelAmpl = builtin_sqrt((pixelc.real*pixelc.real + pixelc.imag*pixelc.imag)*normFactor);
+			float pixelAmpl = pixelc.real * normFactor;
 			pixelAmpl *= CF;
 			pcanvas[i] = pixelAmpl;
 		}else{
